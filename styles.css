@@ -389,11 +389,8 @@ h1 em, h2 em, h3 em, .display em { font-style: italic; color: var(--accent); }
 @media (max-width: 600px) { .brand-board { grid-template-columns: 1fr 1fr; } }
 
 
-.msg-ready { grid-column: 1 / -1; border: 1px solid var(--line); background: var(--paper-2); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; }
-.msg-ready p { margin: 0; color: var(--ink); font-weight: 600; }
-.msg-ready pre { margin: 0; white-space: pre-wrap; font: 14px/1.6 var(--sans); color: var(--ink-soft); background: var(--paper); border-radius: 4px; padding: 14px; max-height: 260px; overflow: auto; }
-.msg-ready .btn-row { align-items: center; }
-
-.points--4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 1000px) { .points--4 { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .points--4 { grid-template-columns: 1fr; } }
+.form-status { grid-column: 1 / -1; border-radius: var(--radius); padding: 18px 20px; font-size: 15.5px; line-height: 1.6; color: var(--ink); }
+.form-status b { display: block; margin-bottom: 4px; }
+.form-status--ok { background: var(--paper-2); border: 1px solid var(--accent-soft); }
+.form-status--erro { background: var(--paper); border: 1px solid var(--line); }
+.form .btn:disabled { opacity: .6; cursor: wait; transform: none; }

@@ -31,43 +31,57 @@ document.querySelectorAll("[data-instagram]").forEach((el) => {
 // Ano no rodapé
 document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
-// Formulário: prepara a mensagem para copiar ou abrir no email
+// Formulário: envia o pedido diretamente para o email (via FormSubmit).
+// Na primeira vez, o FormSubmit manda um email de ativação para EMAIL; é preciso confirmar.
 const form = document.querySelector("#form-orcamento");
 if (form) {
-  form.addEventListener("submit", (ev) => {
+  const status = document.createElement("div");
+  status.className = "form-status";
+  status.setAttribute("role", "status");
+  status.hidden = true;
+  form.appendChild(status);
+
+  form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     const d = new FormData(form);
+    if (d.get("_honey")) return; // bots
     const nome = (d.get("nome") || "").trim();
     const negocio = (d.get("negocio") || "").trim();
-    const subject = `Pedido de orçamento${negocio ? " — " + negocio : ""}`;
-    const body = [
-      `Nome: ${nome}`,
-      `Email: ${d.get("email") || ""}`,
-      `Negócio / projeto: ${negocio}`,
-      `O que procuro: ${d.get("servico") || ""}`,
-      "",
-      d.get("mensagem") || "",
-    ].join("\n");
-    let box = form.querySelector(".msg-ready");
-    if (!box) {
-      box = document.createElement("div");
-      box.className = "msg-ready";
-      box.innerHTML = `<p>A tua mensagem está pronta. Copia-a e envia para <span class="sel">${EMAIL}</span>, ou abre-a no teu email.</p>
-        <pre id="msg-texto"></pre>
-        <div class="btn-row"><button type="button" class="btn" id="msg-copiar">Copiar mensagem</button><a class="btn btn--ghost" id="msg-email">Abrir no email</a></div>`;
-      form.appendChild(box);
-    }
-    box.querySelector("#msg-texto").textContent = `Assunto: ${subject}
+    const subject = `Pedido de orçamento${negocio ? " — " + negocio : ""} (site)`;
+    const btn = form.querySelector('button[type="submit"]');
+    const label = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = "A enviar…";
+    status.hidden = true;
 
-${body}`;
-    box.querySelector("#msg-email").href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    const copy = box.querySelector("#msg-copiar");
-    copy.onclick = () => {
-      const txt = box.querySelector("#msg-texto");
-      const done = () => (copy.textContent = "Copiado");
-      const fallback = () => { const r = document.createRange(); r.selectNodeContents(txt); const s = getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent = "Selecionado: usa Ctrl+C"; };
-      try { navigator.clipboard.writeText(txt.textContent).then(done, fallback); } catch (e) { fallback(); }
-    };
-    box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: subject,
+          _template: "table",
+          _captcha: "false",
+          Nome: nome,
+          email: d.get("email") || "",
+          "Negócio / projeto": negocio,
+          "O que procura": d.get("servico") || "",
+          Mensagem: d.get("mensagem") || "",
+        }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || String(out.success) !== "true") throw new Error(out.message || "erro");
+      form.reset();
+      status.className = "form-status form-status--ok";
+      status.innerHTML = `<b>Obrigada, ${nome.split(" ")[0] || ""}! A tua mensagem foi enviada.</b> Vou ler com atenção e respondo-te pessoalmente para o email que deixaste.`;
+    } catch (e) {
+      status.className = "form-status form-status--erro";
+      status.innerHTML = `<b>Não foi possível enviar agora.</b> Tenta de novo daqui a pouco, ou escreve-me diretamente para <span class="sel">${EMAIL}</span>.`;
+    } finally {
+      status.hidden = false;
+      btn.disabled = false;
+      btn.innerHTML = label;
+      status.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
   });
 }

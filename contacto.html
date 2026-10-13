@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-PT" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto · Bianca Bandarra</title>
+  <meta name="description" content="Pede um orçamento para o teu logótipo ou identidade visual. Respondo pessoalmente a todas as mensagens.">
+  <meta property="og:title" content="Contacto · Bianca Bandarra">
+  <meta property="og:description" content="Pede um orçamento para o teu logótipo ou identidade visual. Respondo pessoalmente a todas as mensagens.">
+  <meta name="theme-color" content="#FBF6F1">
+  <link rel="icon" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..700,100;1,9..144,400..700,100&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Bianca Bandarra, início">
+        <img class="brand-logo" src="img/bb-wordmark-azul.png" alt="Bianca Bandarra" width="900" height="370">
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Sobre mim</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="portfolio.html">Portfólio</a>
+        <a class="btn" href="contacto.html" aria-current="page">Pedir orçamento</a>
+      </nav>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="page-hero">
+      <div class="wrap reveal">
+        <p class="eyebrow">Contacto</p>
+        <h1>Vamos conversar sobre a <em>tua</em> marca?</h1>
+        <p class="lead">Conta-me um pouco sobre o teu negócio e o que precisas. Respondo pessoalmente a todas as mensagens.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap contact-grid">
+        <form class="form reveal" id="form-orcamento">
+          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="negocio">Negócio ou projeto</label><input id="negocio" name="negocio" autocomplete="organization"></div>
+          <div class="field">
+            <label for="servico">O que procuras</label>
+            <select id="servico" name="servico">
+              <option>Logótipo</option>
+              <option>Identidade visual</option>
+              <option>Aplicações (cartões, etiquetas, fardas…)</option>
+              <option selected>Ainda não sei</option>
+            </select>
+          </div>
+          <div class="field field--full"><label for="mensagem">Conta-me sobre o projeto</label><textarea id="mensagem" name="mensagem" placeholder="O que fazes, para quem, e o que gostavas de criar ou mudar." required></textarea></div>
+          <button class="btn" type="submit">Enviar pedido <span class="arrow" aria-hidden="true">→</span></button>
+          <p class="small">Ao carregar em enviar, preparo a mensagem para copiares ou abrires no teu email.</p>
+        </form>
+
+        <aside class="reveal">
+          <p class="eyebrow">Ou fala comigo diretamente</p>
+          <ul class="contact-list">
+            <li><a href="mailto:bandarramedia@gmail.com"><span>Email</span><span>bandarramedia@gmail.com</span></a></li>
+            <li><a href="https://wa.me/351915705433"><span>WhatsApp</span><span>+351 915 705 433</span></a></li>
+            <li data-instagram><a href="#"><span>Instagram</span><span data-instagram-handle></span></a></li>
+            <li><div><span>Onde</span><span>Portugal · à distância</span></div></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <img src="img/bb-wordmark-salmao.png" alt="Bianca Bandarra" width="900" height="370" style="height:64px;width:auto">
+          <p style="margin:14px 0 0;max-width:26em">Designer gráfica freelance. Logótipos e identidade visual para pequenos negócios e projetos pessoais. Portugal, à distância.</p>
+        </div>
+        <div>
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="sobre.html">Sobre mim</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="portfolio.html">Portfólio</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:bandarramedia@gmail.com">bandarramedia@gmail.com</a></li>
+            <li><a href="https://wa.me/351915705433">+351 915 705 433</a></li>
+            <li data-instagram><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Bianca Bandarra</span>
+        <span>Feito com tempo e atenção.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

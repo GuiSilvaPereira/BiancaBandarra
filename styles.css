@@ -393,3 +393,7 @@ h1 em, h2 em, h3 em, .display em { font-style: italic; color: var(--accent); }
 .msg-ready p { margin: 0; color: var(--ink); font-weight: 600; }
 .msg-ready pre { margin: 0; white-space: pre-wrap; font: 14px/1.6 var(--sans); color: var(--ink-soft); background: var(--paper); border-radius: 4px; padding: 14px; max-height: 260px; overflow: auto; }
 .msg-ready .btn-row { align-items: center; }
+
+.points--4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .points--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .points--4 { grid-template-columns: 1fr; } }
